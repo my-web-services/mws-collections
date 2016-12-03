@@ -1,0 +1,31 @@
+
+@import accounts.model.Account
+
+@(account: Account)
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th>Title</th><th>Author</th><th>Year</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="entity in ctrl.entities | filter: searchBook">
+        <td>{{entity.title}}</td><td>{{entity.author}}</td><td>{{entity.year}}</td>
+        <td>
+            <i title="Edit" data-toggle="modal" data-target="#editBookModal" class="glyphicon glyphicon-edit cursorPointer edit-button" ng-click="ctrl.editEntity(entity)">
+            </i>
+        </td>
+        <td>
+            <i title="Delete" class="glyphicon glyphicon-trash cursorPointer delete-button" ng-confirm-message="Are you sure want to delete?" ng-confirm-click="ctrl.deleteEntity(entity.title)">
+            </i>
+        </td>
+        <td>
+            <i title="Google Search" class="glyphicon glyphicon-book cursorPointer google-button" ng-click="ctrl.infoSearch(entity)">
+            </i>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<p>Showing <strong>{{ (ctrl.entities | filter: searchBook).length }}</strong> of <strong>{{ ctrl.entities.length }}</strong> entries</p>
+       

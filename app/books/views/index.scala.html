@@ -1,0 +1,42 @@
+
+@import accounts.model.Account
+@import books.views.html
+@import main.views.{html => mainHtml}
+
+@(account: Account)(implicit webJarAssets: WebJarAssets)
+
+@mainHtml._template(s"${account.name}'s book database", fav = "books")(webJarAssets) {
+
+<div ng-controller="BookCtrl as ctrl">
+
+    <div>
+        <div class="row entity-header">
+            <!-- Book search -->
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <input class="form-control"
+                       type="text"
+                       ng-model="searchBook" placeholder="Search book ..."/>
+            </div>
+            <!-- Alert messages -->
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div ng-repeat="alert in ctrl.alerts">
+                <notification ng-model="alert"></notification>
+                </div>
+            </div>
+            <!-- Add new book link -->
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <button class="btn btn-success btn-sm add-button" data-toggle="modal" data-target="#newBookModal">Add New Book</button>
+            </div>
+
+        </div>
+     </div>
+    <hr>
+
+    @html.list(account)
+    @html.newForm(account)
+    @html.editForm(account)
+    @html.upload()
+
+</div>
+}
+       

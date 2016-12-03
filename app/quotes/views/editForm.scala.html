@@ -1,0 +1,25 @@
+
+@import accounts.model.Account
+
+@(account: Account)
+<!-- Quote Edit Form Modal -->
+<form name="editQuoteForm" ng-submit="ctrl.updateEntity()">
+    <div class="modal fade" id="editQuoteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Edit Quote</h4>
+                </div>
+                <div class="modal-body">
+                     <div class="form-group">   <label for="quote">Quote</label>   <input type="text"          class="form-control"          ng-model="ctrl.selectedEntity.quote"          id="quote"          value="{{ctrl.selectedEntity.quote}}"          required> </div>         <div class="form-group">   <label for="author">Author</label>   <input type="text"          class="form-control"          ng-model="ctrl.selectedEntity.author"          id="author"          value="{{ctrl.selectedEntity.author}}"          required> </div>         <div class="form-group">   <label for="category">Category</label>   <input type="text"          class="form-control"          ng-model="ctrl.selectedEntity.category"          id="category"          value="{{ctrl.selectedEntity.category}}"          required> </div>        
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" >Cancel</button>
+                    <input type="submit" ng-disabled="editQuoteForm.$invalid" class="btn btn-warning" value="Save" />
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+       

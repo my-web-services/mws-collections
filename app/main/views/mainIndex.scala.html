@@ -1,0 +1,25 @@
+@import accounts.model.Account
+@import main.views.html._template
+
+@(account: Account)(implicit webJarAssets: WebJarAssets)
+
+@_template(s"${account.name}'s Collections")(webJarAssets) {
+
+    <ul class="link-list">
+        <li><a href="@books.routes.BookController.index()">
+            <img class="resize" src="@routes.Assets.at("images/book.ico")">
+        </a></li>
+        <li><a href="@quotes.routes.QuoteController.index()">
+            <img class="resize" src="@routes.Assets.at("images/quote.ico")">
+        </a></li>
+        <li><a href="@talks.routes.TalkController.index()">
+            <img class="resize" src="@routes.Assets.at("images/talk.ico")">
+        </a></li>
+        <li><a href="@conferences.routes.ConferenceController.index()">
+            <img class="resize" src="@routes.Assets.at("images/conference.ico")">
+        </a></li>
+        <li><a href="@papers.routes.PaperController.index()">
+            <img class="resize" src="@routes.Assets.at("images/paper.ico")">
+        </a></li>
+    </ul>
+}

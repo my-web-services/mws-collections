@@ -1,0 +1,55 @@
+@import accounts.{routes => accountsRoutes}
+@import main.{routes => mainRoutes}
+
+@(title: String, fav: String = "favicon")(webJarAssets: WebJarAssets)(content: Html)
+
+<!DOCTYPE html>
+<html lang="en" ng-app="mainApp">
+    <head>
+        <title>@title</title>
+
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at(s"images/$fav.ico")">
+
+        <!-- Bootstrap 3.3.6 -->
+        <link rel='stylesheet' href='@routes.WebJarAssets.at(webJarAssets.locate("css/bootstrap.min.css"))'>
+
+        <!-- Custom CSS Links -->
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+
+    </head>
+    <body>
+
+    <header>
+        <a href="@mainRoutes.Application.mainIndex()">
+            <span class="glyphicon glyphicon-menu-hamburger header-icon" aria-hidden="true"></span>
+        </a>
+        <h3 class="page-header" style="">@title</h3>
+        <a href="@accountsRoutes.Authentication.logout()">
+            <span class="glyphicon glyphicon-log-out logout-icon" aria-hidden="true"></span>
+        </a>
+    </header>
+
+        <div class="container-fluid body-content">
+            @content
+        </div>
+
+        <!-- Plugin Javascript -->
+        <script type="text/javascript" src='@routes.WebJarAssets.at(webJarAssets.locate("jquery.min.js"))'></script>
+        <script type="text/javascript" src='@routes.WebJarAssets.at(webJarAssets.locate("js/bootstrap.min.js"))'></script>
+        <script type="text/javascript" src='@routes.WebJarAssets.at(webJarAssets.locate("angular.min.js"))'></script>
+        <script type="text/javascript" src='@routes.WebJarAssets.at(webJarAssets.locate("ui-bootstrap-tpls.min.js"))'></script>
+        <script type="text/javascript" src='@routes.WebJarAssets.at(webJarAssets.locate("angular-animate.min.js"))'></script>
+        <script type="text/javascript" src='@routes.WebJarAssets.at(webJarAssets.locate("angular-csv-import.min.js"))'></script>
+
+         <!-- Custom Javascripts Links -->
+        <script type="text/javascript" src="@routes.Assets.at("javascripts/Talk.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.at("javascripts/Quote.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.at("javascripts/Paper.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.at("javascripts/Conference.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.at("javascripts/Book.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.at("javascripts/app.js")"></script>
+        <script type="text/javascript" src="https://www.google.com/books/jsapi.js"></script>
+        <script type="text/javascript" src="http://s.codepen.io/assets/libs/modernizr.js"></script>
+
+    </body>
+</html>

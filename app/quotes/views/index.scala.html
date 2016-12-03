@@ -1,0 +1,42 @@
+
+@import accounts.model.Account
+@import quotes.views.html
+@import main.views.{html => mainHtml}
+
+@(account: Account)(implicit webJarAssets: WebJarAssets)
+
+@mainHtml._template(s"${account.name}'s quote database", fav = "quotes")(webJarAssets) {
+
+<div ng-controller="QuoteCtrl as ctrl">
+
+    <div>
+        <div class="row entity-header">
+            <!-- Quote search -->
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <input class="form-control"
+                       type="text"
+                       ng-model="searchQuote" placeholder="Search quote ..."/>
+            </div>
+            <!-- Alert messages -->
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div ng-repeat="alert in ctrl.alerts">
+                <notification ng-model="alert"></notification>
+                </div>
+            </div>
+            <!-- Add new quote link -->
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <button class="btn btn-success btn-sm add-button" data-toggle="modal" data-target="#newQuoteModal">Add New Quote</button>
+            </div>
+
+        </div>
+     </div>
+    <hr>
+
+    @html.list(account)
+    @html.newForm(account)
+    @html.editForm(account)
+    @html.upload()
+
+</div>
+}
+       

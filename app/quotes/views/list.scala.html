@@ -1,0 +1,34 @@
+
+@import accounts.model.Account
+
+@(account: Account)
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th>Quote</th><th>Author</th><th>Category</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="entity in ctrl.entities | filter: searchQuote">
+        i
+        <td>
+            <blockquote>
+                {{entity.quote}}
+                <cite>{{entity.author}}</cite>
+            </blockquote>
+        </td>
+        <td>{{entity.category}}</td>
+        <td>
+            <i title="Edit" data-toggle="modal" data-target="#editQuoteModal" class="glyphicon glyphicon-edit cursorPointer edit-button" ng-click="ctrl.editEntity(entity)">
+            </i>
+        </td>
+        <td>
+            <i title="Delete" class="glyphicon glyphicon-trash cursorPointer delete-button" ng-confirm-message="Are you sure want to delete?" ng-confirm-click="ctrl.deleteEntity(entity.quote)">
+            </i>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<p>Showing <strong>{{ (ctrl.entities | filter: searchQuote).length }}</strong> of <strong>{{ ctrl.entities.length }}</strong> entries</p>
+       

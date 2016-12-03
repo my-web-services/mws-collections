@@ -1,0 +1,75 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                      main.Application.mainIndex
+
+# Authentication
+GET		/login				   accounts.Authentication.prepareLogin()
+POST	/login				   accounts.Authentication.login()
+GET		/logout				   accounts.Authentication.logout()
+POST	/signUp 	           accounts.Authentication.signUp()
+GET     /account/list          accounts.Authentication.list()
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file          controllers.Assets.at(path="/public", file)
+
+# WebJars
+GET     /webjars/*file         controllers.WebJarAssets.at(file)
+
+# Book-related routes
+GET     /books               books.BookController.index
+GET     /book/list             books.BookController.list
+POST    /book/create           books.BookController.create
+POST    /book/createMany       books.BookController.createMany
+GET     /book/edit             books.BookController.edit(title: String)
+POST    /book/update           books.BookController.update
+GET     /book/delete           books.BookController.delete(title: String)
+POST    /book/infoSearch       books.BookController.infoSearch
+
+       
+# Conference-related routes
+GET     /conferences               conferences.ConferenceController.index
+GET     /conference/list             conferences.ConferenceController.list
+POST    /conference/create           conferences.ConferenceController.create
+POST    /conference/createMany       conferences.ConferenceController.createMany
+GET     /conference/edit             conferences.ConferenceController.edit(title: String)
+POST    /conference/update           conferences.ConferenceController.update
+GET     /conference/delete           conferences.ConferenceController.delete(title: String)
+POST    /conference/infoSearch       conferences.ConferenceController.infoSearch
+
+       
+# Paper-related routes
+GET     /papers               papers.PaperController.index
+GET     /paper/list             papers.PaperController.list
+POST    /paper/create           papers.PaperController.create
+POST    /paper/createMany       papers.PaperController.createMany
+GET     /paper/edit             papers.PaperController.edit(title: String)
+POST    /paper/update           papers.PaperController.update
+GET     /paper/delete           papers.PaperController.delete(title: String)
+POST    /paper/infoSearch       papers.PaperController.infoSearch
+
+       
+# Quote-related routes
+GET     /quotes               quotes.QuoteController.index
+GET     /quote/list             quotes.QuoteController.list
+POST    /quote/create           quotes.QuoteController.create
+POST    /quote/createMany       quotes.QuoteController.createMany
+GET     /quote/edit             quotes.QuoteController.edit(quote: String)
+POST    /quote/update           quotes.QuoteController.update
+GET     /quote/delete           quotes.QuoteController.delete(quote: String)
+POST    /quote/infoSearch       quotes.QuoteController.infoSearch
+
+       
+# Talk-related routes
+GET     /talks               talks.TalkController.index
+GET     /talk/list             talks.TalkController.list
+POST    /talk/create           talks.TalkController.create
+POST    /talk/createMany       talks.TalkController.createMany
+GET     /talk/edit             talks.TalkController.edit(title: String)
+POST    /talk/update           talks.TalkController.update
+GET     /talk/delete           talks.TalkController.delete(title: String)
+POST    /talk/infoSearch       talks.TalkController.infoSearch
+
+       

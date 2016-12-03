@@ -1,0 +1,42 @@
+
+@import accounts.model.Account
+@import papers.views.html
+@import main.views.{html => mainHtml}
+
+@(account: Account)(implicit webJarAssets: WebJarAssets)
+
+@mainHtml._template(s"${account.name}'s paper database", fav = "papers")(webJarAssets) {
+
+<div ng-controller="PaperCtrl as ctrl">
+
+    <div>
+        <div class="row entity-header">
+            <!-- Paper search -->
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <input class="form-control"
+                       type="text"
+                       ng-model="searchPaper" placeholder="Search paper ..."/>
+            </div>
+            <!-- Alert messages -->
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <div ng-repeat="alert in ctrl.alerts">
+                <notification ng-model="alert"></notification>
+                </div>
+            </div>
+            <!-- Add new paper link -->
+            <div class="col-sm-4 col-md-4 col-lg-4">
+                <button class="btn btn-success btn-sm add-button" data-toggle="modal" data-target="#newPaperModal">Add New Paper</button>
+            </div>
+
+        </div>
+     </div>
+    <hr>
+
+    @html.list(account)
+    @html.newForm(account)
+    @html.editForm(account)
+    @html.upload()
+
+</div>
+}
+       

@@ -1,0 +1,55 @@
+@import accounts.model.Account
+@import accounts.routes
+@import main.views.{html => mainHtml}
+
+@(accountForm: Form[Account])(implicit webJarAssets: WebJarAssets)
+
+@accountModal(submit: String, modalId: String) = {
+    <div class="modal fade" id="@{modalId}Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Login</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" placeholder="name" name="name" value="@accountForm("name").value" required/>
+                        @accountForm.error("name").map { formError =>
+                            <span class="form-error is-visible">@formError.message</span>
+                        }
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" placeholder="password" name="password" required/>
+                        @accountForm.error("password").map { formError =>
+                            <span class="form-error is-visible">@formError.message</span>
+                        }
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-warning">@submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@mainHtml._template("Log in")(webJarAssets) {
+
+    <ul style="list-style-type:none">
+    <li><button class="btn btn-success btn-sm login-button" data-toggle="modal" data-target="#loginModal">Log in</button></li>
+    <li><button class="btn btn-success btn-sm signup-button" data-toggle="modal" data-target="#signupModal">Sign up</button></li>
+    </ul>
+
+
+    <form method="post" action="@routes.Authentication.login()">
+        @accountModal(submit = "Log in", modalId = "login")
+    </form>
+
+    <form method="post" action="@routes.Authentication.signUp()">
+        @accountModal(submit = "Sign up", modalId = "signup")
+    </form>
+}

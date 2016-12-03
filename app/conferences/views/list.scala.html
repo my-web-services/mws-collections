@@ -1,0 +1,32 @@
+
+@import accounts.model.Account
+
+@(account: Account)
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th>Title</th><th>Period</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="entity in ctrl.entities | filter: searchConference">
+        <td>{{entity.title}}</td><td>{{entity.period}}</td>
+        <td>
+            <a href="{{entity.link}}" target="_blank">
+                <i title="Link" class="glyphicon glyphicon-link cursorPointer"></i>
+            </a>
+        </td>
+        <td>
+            <i title="Edit" data-toggle="modal" data-target="#editConferenceModal" class="glyphicon glyphicon-edit cursorPointer edit-button" ng-click="ctrl.editEntity(entity)">
+            </i>
+        </td>
+        <td>
+            <i title="Delete" class="glyphicon glyphicon-trash cursorPointer delete-button" ng-confirm-message="Are you sure want to delete?" ng-confirm-click="ctrl.deleteEntity(entity.title)">
+            </i>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<p>Showing <strong>{{ (ctrl.entities | filter: searchConference).length }}</strong> of <strong>{{ ctrl.entities.length }}</strong> entries</p>
+       
